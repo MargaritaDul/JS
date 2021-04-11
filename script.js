@@ -1,6 +1,6 @@
 
 ////////////1///////////////
-/*
+
 let result = prompt ('Ваше имя?', '');
 alert (`Ваше имя ${result}`);
 
@@ -162,33 +162,55 @@ const capitalize = (someWord) => {
 
 console.log(capitalize("пиТер"));
 console.log(capitalize("javaScript"));
-*/
+
 
 
 
 //////////////7///////////////////
 
 
-const fn1 = function (numbersArray) {
-    if (Array.isArray(numbersArray)) {
+const fn1 = function (mixedArray) {
+    if (Array.isArray(mixedArray)) {
         const result = [];
-        for (let i = 0; i < numbersArray.length; i++) {
-            if (typeof numbersArray[i] === "number") {
-                numbersArray[i] = String(numbersArray[i]);
-                const a = numbersArray;
-                result.push(a);
+        for (let i = 0; i < mixedArray.length; i++) {
+            if (typeof mixedArray[i] === "number") {
+                const stringedArray = String(mixedArray[i]);
+                result.push(stringedArray);
             }
-            return result;
+            if (typeof mixedArray[i] === "string") {
+                const numberedArray = +(mixedArray[i]);
+                result.push(numberedArray);
+            }
         }
+        return result;
     }
 }
 
 console.log(fn1([1, 2, 3, '4', '5', 6]));
 
 
+const fn1 = (mixedArray) => {
+    if (Array.isArray(mixedArray)) {
+        const result = [];
+        for (let i = 0; i < mixedArray.length; i++) {
+            if (typeof mixedArray[i] === "number") {
+                const stringedArray = String(mixedArray[i]);
+                result.push(stringedArray);
+            }
+            if (typeof mixedArray[i] === "string") {
+                const numberedArray = +(mixedArray[i]);
+                result.push(numberedArray);
+            }
+        }
+        return result;
+    }
+}
+
+console.log(fn1([1, 2, 3, '4', '5', 6]));
+
 
 //////////////8///////////////////
-/*
+
 
 const fn1 = function (firstArray, secondArray) {
     if (Array.isArray(firstArray) && Array.isArray(secondArray)) {
@@ -231,5 +253,5 @@ const fn1 = (string, numberOfCharacters) => {
         }
     }
 
-console.log(fn1("Привет мир!", 6)); */
+console.log(fn1("Привет мир!", 6)); 
 
