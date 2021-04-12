@@ -2,7 +2,7 @@
 ////////////1///////////////
 
 const sayHello = function(name) {
-    if (name === "Mark") {
+    if (name.toLowerCase() === "mark") {
         return `Hi, ${name}`;
     }
         return `Hello, ${name}`; 
