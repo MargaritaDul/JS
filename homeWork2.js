@@ -19,6 +19,19 @@ const users = [
   },
 ];
 
+const sortedByGenderArray = users.reduce((result, user) => {
+  const fullName = `${user.first_name} ${user.last_name}`;
+  const { id, email, gender, ip_address } = user;
+  if (user.gender === "Female") {
+    result["women"] = [{ id, fullName: fullName, email, gender, ip_address }];
+    return result;
+  }
+  result["men"] = [{ id, fullName: fullName, email, gender, ip_address }];
+  return result;
+}, {});
+
+console.log(sortedByGenderArray);
+
 ////////2//////////
 
 const initialData = [
@@ -102,8 +115,8 @@ console.log(updatedArray);
 ///////5//////
 
 const isPalindrome = (str) => {
-  str = str.toLowerCase();
-  return str === str.split("").reverse().join("");
+  const lowercasedString = str.toLowerCase();
+  return str === lowercasedString.split("").reverse().join("");
 };
 
 console.log(isPalindrome("шалаш"));
@@ -145,12 +158,11 @@ const newReleases = [
   },
 ];
 
-const updatedNewReleases = newReleases.map((element) => {
-  const { id, title } = element;
-  const newObject = { id, title };
-  return newObject;
+const onlyIdAndTitleNewReleases = newReleases.map((release) => {
+  const { id, title } = release;
+  return { id, title };
 });
-console.log(updatedNewReleases);
+console.log(onlyIdAndTitleNewReleases);
 
 ////////7/////
 
@@ -189,15 +201,14 @@ const newReleases = [
   },
 ];
 
-const newNewReleases = newReleases.reduce((result, element) => {
-  if (element.rating[0] === 5.0) {
-    const rrr = element.id;
-    result.push(rrr);
+const withFiveRatingId = newReleases.reduce((result, release) => {
+  if (release.rating[0] === 5.0) {
+    result.push(element.id);
   }
   return result;
 }, []);
 
-console.log(newNewReleases);
+console.log(withFiveRatingId);
 
 /////8/////
 
@@ -220,14 +231,13 @@ const videos = [
   },
 ];
 
-const fn1 = videos.reduce((result, element) => {
-  if (typeof element.id !== "number" || typeof element.title !== "string")
-    return;
-  result[element.id] = element.title;
+const videosObject = videos.reduce((result, video) => {
+  if (typeof video.id !== "number" || typeof video.title !== "string") return;
+  result[video.id] = video.title;
   return result;
 }, {});
 
-console.log(fn1);
+console.log(videosObject);
 
 /////////9/////////
 
@@ -248,8 +258,27 @@ const boxarts = [
     url: "http://cdn-0.nflximg.com/images/2891/Fracture300.jpg",
   },
   {
-    width: 425,
+    width: 42,
     height: 150,
     url: "http://cdn-0.nflximg.com/images/2891/Fracture425.jpg",
   },
 ];
+
+const squaredBoxarts = boxarts.map((element) => {
+  const newObject = {
+    square: element.width * element.height,
+    url: element.url,
+  };
+  return newObject;
+});
+
+const maxSquareBoxart = squaredBoxarts.reduce((result, item) => {
+  if (result.square > item.square) {
+    return result;
+  }
+  return item;
+}, []);
+
+const maxSquareBoxartUrl = maxSquareBoxart.url;
+
+console.log(maxSquareBoxartUrl);
